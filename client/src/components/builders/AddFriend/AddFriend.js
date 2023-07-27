@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_FRIEND } from '../../../utils/mutations';
 import { YOUR_PROFILE, User_Profile } from '../../../utils/queries';
+import "./AddFriend.css";
 
 const AddFriendButton = ({ currentUserId, friendId }) => {
     const [addFriend, { loading }] = useMutation(ADD_FRIEND);
