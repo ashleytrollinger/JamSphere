@@ -34,7 +34,7 @@ const AddFriendButton = ({ currentUserId, friendId }) => {
     return (
         <>
             {currentUserId && friendId !== currentUserId && (
-                <button onClick={handleAddFriend} disabled={loading}>
+                <button className="friendButton" onClick={handleAddFriend} disabled={loading}>
                     {loading ? "Loading..." : isSuccess ? "Friend Added!" : "Add Friend"}
                 </button>
             )}

@@ -3,7 +3,7 @@ li {
 
 }
 
-li button:hover {
+ button:hover {
     color: #D1495B;
     transform: scale(1.2);
     text-shadow: none;

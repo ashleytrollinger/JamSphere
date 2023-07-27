@@ -48,8 +48,8 @@ const ProfileWindow = ({ userId }) => {
             <div>
                 <nav>
                     <ul>
-                        <li><button onClick={toggleMyPosts}>My Posts</button></li>
-                        <li><button onClick={toggleMyFriends}>Friends</button></li>
+                        <li><button onClick={toggleMyPosts} id="posts">My Posts</button></li>
+                        <li><button onClick={toggleMyFriends} id="friends">Friends</button></li>
                     </ul>
                 </nav>
                 <section>
