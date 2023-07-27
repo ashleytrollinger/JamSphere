@@ -15,7 +15,7 @@ const resolvers = {
     },
     // Get all posts from everyone
     getPost: async (parent, { postId }) => {
-      return await Post.findOne({ _id: postId });
+      return await Post.findOne({ _id: postId }).populate("comments");
     },
     // Get all posts from a specific user
     userPosts: async (parent, { userId }) => {
@@ -29,6 +29,15 @@ const resolvers = {
     // Get comments for a specific post
     getComment: async (parent, { commentId }) => {
       return await Comment.findOne({ _id: commentId });
+    },
+    Post: {
+      comments: async (parent) => {
+
+        const populatedComments = await Comment.find({
+          _id: { $in: parent.comments },
+        });
+        return populatedComments;
+      },
     },
   },
 
