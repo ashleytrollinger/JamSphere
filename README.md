@@ -32,6 +32,8 @@ Project made by Manuela Osorio, Ashley Trollinger, Quentin Dacher, Tanner Fink, 
 <a href="https://github.com/SA2111"><img src="https://avatars.githubusercontent.com/u/127169775?s=400&v=4" title="M" width="75" height="75"></a>
 <a href="https://github.com/patrickdmorgan"><img src="https://avatars.githubusercontent.com/u/124013352?v=4" title="M" width="75" height="75"></a>
 
+UPDATES CREDITED TO ASHLEY TROLLINGER
+
 ## Resources
 - [JamSphere website](https://jamsphere-ad4807320222.herokuapp.com/) 
 - [Create React App](https://create-react-app.dev/)
