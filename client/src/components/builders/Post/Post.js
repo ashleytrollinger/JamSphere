@@ -35,11 +35,13 @@ const Post = ({ artist, title, postText, username, userId, songURL, comments }) 
           <h3 id="postArtist">{artist}</h3>
           <h3 id="postText">{postText}</h3>
           <a href={songURL} title="Link To Song">
-            ♩♬♪ Listen Here♩♬♪
+            ♩♬♪ Listen Here ♩♬♪
           </a>
           <h3 id="postUsername"><Link to={`/profile/${userId}`}>See User Profile</Link></h3>
           {/* Comment button included in the same .post-content div */}
-          <button onClick={toggleComments}>Show Comments</button>
+          <button onClick={toggleComments}>
+            {showComment ? "Hide Comments" : "Show Comments"}
+          </button>
           <button onClick={toggleCommentForm}>
             Leave Comment
           </button>
@@ -54,15 +56,17 @@ const Post = ({ artist, title, postText, username, userId, songURL, comments }) 
               <button type="submit">Submit Comment</button>
             </form>
           )}
+
+          {/* This code below should mean that if showComment is true we display this following code */}
+          {showComment && isLoggedIn && (
+            <div className="commentContainer">
+              <CommentsContainer comments={comments} />
+            </div>
+          )}
         </div>
-        {/* This code below should mean that if showComment is true we display this following code */}
-        {showComment && isLoggedIn && (
-          <div>
-            <CommentsContainer comments={comments} />
-          </div>
-        )}
       </div>
     </>
+
   );
 };
 
