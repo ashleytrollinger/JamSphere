@@ -45,7 +45,7 @@ const resolvers = {
         coverPicId,
       });
       const token = signToken(profile);
-    
+
       return { token, profile };
     },
 
@@ -65,44 +65,58 @@ const resolvers = {
       const token = signToken(profile);
       return { token, profile };
     },
-    
+
     addFriend: async (parent, { userId, friendId }, context) => {
       if (context.user && context.user._id === userId) {
         const user = await User.findOne({ _id: userId });
-  
+
         if (!user.friendList.includes(friendId)) {
           user.friendList.push(friendId);
           await user.save();
         }
-  
+
         return user;
       }
-  
+
       throw new AuthenticationError('You need to be logged in!');
     },
-                    // parameters
+    // parameters
     createPost: async (parent, { artist, title, songURL, postText }, context) => {
       if (context.user) {
         //variables
-          const newPost = await Post.create({
-              authorId: context.user._id,
-              artist: artist,
-              title: title,
-              songURL: songURL,
-              postText: postText
-          });
-  
-          await User.findOneAndUpdate(
-              { _id: context.user._id },
-              { $addToSet: { posts: newPost._id } }
-          );
-  
-          return newPost;
+        const newPost = await Post.create({
+          authorId: context.user._id,
+          artist: artist,
+          title: title,
+          songURL: songURL,
+          postText: postText
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { posts: newPost._id } }
+        );
+
+        return newPost;
       }
-  
+
       throw new AuthenticationError('You need to be logged in!');
     },
-    
+    createComment: async (parent, { authorId, postId, commentContent }) => {
+
+      const newComment = await Comment.create({
+        authorId: authorId,
+        postId: postId,
+        commentContent: commentContent,
+      });
+      await Post.findOneAndUpdate(
+        { _id: postId },
+        { $addToSet: { comments: newComment._id } }
+      );
+
+      return newComment;
+    },
+
 
     deletePost: async (parent, { postId }) => {
       // Implement the logic to delete a post by postId
